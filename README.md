@@ -42,7 +42,7 @@ module "example" {
     },
   }
 }
-
+```
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -106,4 +106,4 @@ No modules.
 ## License
 
 MIT
-```
+
