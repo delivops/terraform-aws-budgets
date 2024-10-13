@@ -1,7 +1,7 @@
 
 module "example" {
   source       = "delivops/budgets/aws"
-  version      = "0.0.1"
+  version      = "0.0.2"
   budget_name  = "123"
   budget_type  = "COST"
   limit_amount = 500

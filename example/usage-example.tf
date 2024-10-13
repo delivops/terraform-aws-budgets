@@ -1,6 +1,6 @@
 module "example" {
   source       = "delivops/budgets/aws"
-  version      = "0.0.1"
+  version      = "0.0.2"
   budget_name  = "s3-api-calls-budget"
   budget_type  = "USAGE"
   limit_amount = 10000000  # 1m limit for API calls
