@@ -26,17 +26,4 @@ resource "aws_budgets_budget" "this" {
       subscriber_sns_topic_arns  = [var.sns_topic_arn]
     }
   }
-
-  cost_types {
-    include_credit             = true
-    include_discount           = true
-    include_other_subscription = true
-    include_recurring          = true
-    include_refund             = true
-    include_subscription       = true
-    include_support            = true
-    include_tax                = true
-    include_upfront            = true
-    use_blended                = true
-  }
 }
