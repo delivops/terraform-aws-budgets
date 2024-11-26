@@ -28,15 +28,15 @@ resource "aws_budgets_budget" "this" {
   }
 
   cost_types {
-    include_credit             = false
-    include_discount           = false
-    include_other_subscription = false
-    include_recurring          = false
-    include_refund             = false
+    include_credit             = true
+    include_discount           = true
+    include_other_subscription = true
+    include_recurring          = true
+    include_refund             = true
     include_subscription       = true
-    include_support            = false
-    include_tax                = false
-    include_upfront            = false
-    use_blended                = false
+    include_support            = true
+    include_tax                = true
+    include_upfront            = true
+    use_blended                = true
   }
 }
