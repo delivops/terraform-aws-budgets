@@ -1,4 +1,4 @@
-![image info](logo.jpeg)
+![image info](logo1.jpeg)
 
 # terraform-aws-budgets
 
