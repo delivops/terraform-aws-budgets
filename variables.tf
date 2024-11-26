@@ -1,8 +1,7 @@
-# Example, compulsory input variable
 variable "budget_name" {
   description = "The name of the budget. Unique within accounts."
   type        = string
-  
+
 }
 variable "budget_type" {
   description = "Whether this budget tracks monetary cost or usage. Availiable options: 'COST', 'USAGE', 'SAVINGS_PLANS_UTILIZATION', 'RI_UTILIZATION'."
@@ -13,11 +12,8 @@ variable "budget_type" {
 variable "limit_amount" {
   description = "The amount of cost or usage being measured for a budget"
   type        = number
+  default     = 100
 }
-# variable "limit_amount_legal" {
-#   description = "The amount of cost or usage being measured for a budget"
-#   type        = number
-# }
 
 variable "limit_unit" {
   description = "The unit of measurement used for the budget forecast, actual spend, or budget threshold."
@@ -62,58 +58,14 @@ variable "cost_filters" {
   default = []
 }
 
-variable "notifications" {
-  description = <<EOT
-  A map of objects containing Budget Notifications. Required object fields:
-    comparison_operator - Comparison operator to use to evaluate the condition. Can be LESS_THAN, EQUAL_TO or GREATER_THAN.
-    threshold - Threshold when the notification should be sent.
-    threshold_type - What kind of threshold is defined. Can be PERCENTAGE OR ABSOLUTE_VALUE.
-    notification_type - What kind of budget value to notify on. Can be ACTUAL or FORECASTED.
-    subscriber_email_addresses - E-Mail addresses to notify.
-  Example:
-  ```terraform 
-    test = {
-      comparison_operator        = "GREATER_THAN"
-      notification_type          = "ACTUAL"
-      subscriber_email_addresses = ["notifications@example.com"]
-      threshold                  = 80
-      threshold_type             = "PERCENTAGE"
-    }
-  ```
-  EOT
-  type = map(object(
-    {
-      comparison_operator        = string
-      threshold                  = number
-      threshold_type             = string
-      notification_type          = string
-      subscriber_email_addresses = list(string)
-    }
-  ))
-}
-
-variable "extra_email_addresses" {
-  description = "A list of additional e-mail addresses that will receive all notifications"
+variable "email_addresses" {
+  description = "A list of email addresses to notify if the budget exceeds the threshold."
   type        = list(string)
   default     = []
 }
 
-variable "cost_types" {
-  description = <<EOT
-    Map containing CostTypes The types of cost included in a budget, such as tax and subscriptions.
-    Valid keys:
-      include_credit - A boolean value whether to include credits in the cost budget. Defaults to true
-      include_discount - Specifies whether a budget includes discounts. Defaults to true
-      include_other_subscription - A boolean value whether to include other subscription costs in the cost budget. Defaults to true
-      include_recurring - A boolean value whether to include recurring costs in the cost budget. Defaults to true
-      include_refund - A boolean value whether to include refunds in the cost budget. Defaults to true
-      include_subscription - A boolean value whether to include subscriptions in the cost budget. Defaults to true
-      include_support - A boolean value whether to include support costs in the cost budget. Defaults to true
-      include_tax - A boolean value whether to include tax in the cost budget. Defaults to true
-      include_upfront - A boolean value whether to include upfront costs in the cost budget. Defaults to true
-      use_amortized - Specifies whether a budget uses the amortized rate. Defaults to false
-      use_blended - A boolean value whether to use blended costs in the cost budget. Defaults to false
-  EOT
-  type        = map(string)
-  default     = {}
+variable "sns_topic_arn" {
+  type        = string
+  description = "ARN of the SNS topic to send notifications to"
+  default     = ""
 }

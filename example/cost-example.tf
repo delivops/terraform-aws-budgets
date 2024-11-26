@@ -1,24 +1,15 @@
 
 module "example" {
-  source       = "delivops/budgets/aws"
-  version      = "0.0.1"
+  source       = "../"
   budget_name  = "123"
   budget_type  = "COST"
   limit_amount = 500
-  time_unit    = "DAILY"
   cost_filters = [
     {
       name  = "Service"
-      value = ["Amazon Simple Storage Service", "Amazon Elastic Compute Cloud - Compute","AWS Lambda"]
+      value = ["Amazon Simple Storage Service", "Amazon Elastic Compute Cloud - Compute", "AWS Lambda"]
     }
   ]
-  notifications = {
-    test = {
-      comparison_operator        = "GREATER_THAN"
-      notification_type          = "ACTUAL"
-      subscriber_email_addresses = ["osnat@delivops.com"]
-      threshold                  = 80
-      threshold_type             = "PERCENTAGE"
-    },
-  }
+  email_addresses = ["osnat529@gmail.com", "yehu@gmail.com"]
+  sns_topic_arn   = "arn:aws:sns:eu-west-1:556196322339:tests"
 }
