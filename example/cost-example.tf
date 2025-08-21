@@ -11,5 +11,5 @@ module "example" {
     }
   ]
   email_addresses = ["osnat529@gmail.com", "yehu@gmail.com"]
-  sns_topic_arn   = "arn:aws:sns:eu-west-1:556196322339:tests"
+  sns_topic_arn   = "arn:aws:sns:eu-west-1:xxxxxxxxx:tests"
 }
